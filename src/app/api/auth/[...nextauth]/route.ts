@@ -1,3 +1,5 @@
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
 import NextAuth, { AuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
@@ -8,6 +10,7 @@ const hostName = new URL(process.env.NEXTAUTH_URL!).hostname
 export const authOptions: AuthOptions = {
   debug: process.env.NODE_ENV === "development",
   // https://next-auth.js.org/configuration/providers/oauth
+  adapter: PrismaAdapter(new PrismaClient()),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
