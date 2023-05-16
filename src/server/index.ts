@@ -8,6 +8,39 @@ export const appRouter = router({
     const users = await prismaClient.user.findMany()
     return users
   }),
+  getCurrentUser: publicProcedure.query(async ({ input, ctx }) => {
+    const userId = ctx.user?.id
+    if (!userId) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+      })
+    }
+    const user = await prismaClient.user.findUnique({
+      where: {
+        id: userId,
+      },
+    })
+    return user
+  }),
+  updateUser: publicProcedure
+    .input(z.object({ name: z.string().optional() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id
+      if (!userId) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        })
+      }
+      const user = await prismaClient.user.update({
+        where: {
+          id: userId,
+        },
+        data: {
+          name: input.name,
+        },
+      })
+      return user
+    }),
   deleteUser: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
