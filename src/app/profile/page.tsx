@@ -22,7 +22,12 @@ export default function Profile() {
               value={data?.name!}
               onSubmit={(text) => {
                 trpc.updateUser.mutate({ name: text })
-                mutate({ ...data!, name: text })
+                mutate(
+                  { ...data!, name: text },
+                  {
+                    revalidate: false,
+                  }
+                )
               }}
             />
           </section>
