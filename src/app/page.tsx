@@ -1,10 +1,9 @@
-import { authOptions } from "./api/auth/[...nextauth]/route"
-import { getServerSession } from "next-auth"
 import Link from "next/link"
 import { Button } from "./Components/Button"
+import { getServerSession } from "@/utils/nextauth"
 
 export default async function Home({}) {
-  const data = await getServerSession(authOptions)
+  const data = await getServerSession()
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       <h1 className="text-6xl">Next 13 + NextAuth Starter</h1>

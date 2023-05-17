@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import clsx from "classnames"
 
 export function Button(
   props: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -17,7 +18,10 @@ export function Button(
   return (
     <button
       {...props}
-      className="group relative px-10 py-3 bg-black text-white rounded-2xl overflow-hidden"
+      className={clsx(
+        "group relative px-8 py-2 bg-black text-white rounded-2xl overflow-hidden",
+        props.className
+      )}
       onMouseMove={onMouseMove}
     >
       <div className="absolute inset-0">
