@@ -2,8 +2,8 @@
 
 import { trpc } from "@/utils/trpc"
 import useSWR from "swr"
-import { TextInfo } from "./TextInfo"
-import { Button } from "@/app/Components/Button"
+import { Editable } from "./Editable"
+import { Button } from "@/app/components/Button"
 import { signOut } from "next-auth/react"
 
 export default function Profile() {
@@ -18,9 +18,12 @@ export default function Profile() {
             <img src={data?.image!} alt="" className="w-20 h-20 rounded shadow" />
           </section>
           <section className="flex items-center gap-4 w-64">
+            <div>ID: </div>
+            <div>{data?.id}</div>
+          </section>
+          <section className="flex items-center gap-4 w-64">
             <div>Name: </div>
-            <TextInfo
-              editable
+            <Editable
               value={data?.name!}
               onSubmit={(text) => {
                 trpc.updateUser.mutate({ name: text })
@@ -35,7 +38,7 @@ export default function Profile() {
           </section>
           <section className="flex items-center gap-4 w-64">
             <div>Email: </div>
-            <TextInfo value={data?.email!} />
+            <div>{data?.email}</div>
           </section>
           <section className="w-64">
             <Button className="text-lg" onClick={() => signOut()}>

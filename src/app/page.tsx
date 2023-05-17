@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Button } from "./Components/Button"
+import { Button } from "./components/Button"
 import { getServerSession } from "@/utils/nextauth"
 
 export default async function Home({}) {
@@ -9,7 +9,7 @@ export default async function Home({}) {
       <h1 className="text-6xl">Next 13 + NextAuth Starter</h1>
       <section className="mt-16">
         {data ? (
-          <Link href="/profile">
+          <Link href="/me">
             <Button>{data.user.id}</Button>
           </Link>
         ) : (
