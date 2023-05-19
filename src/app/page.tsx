@@ -6,7 +6,7 @@ export default async function Home({}) {
   const data = await getServerSession()
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-6xl">Next 13 + NextAuth Starter</h1>
+      <h1 className="text-6xl">Next.js 13 + NextAuth Starter</h1>
       <section className="mt-16">
         {data ? (
           <Link href="/me">

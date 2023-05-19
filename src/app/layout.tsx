@@ -1,5 +1,5 @@
 import "./globals.css"
-import { SessionProvider } from "./SessionProvider"
+import { SessionProvider } from "./components/SessionProvider"
 
 export const metadata = {
   title: "Create Next App",
